@@ -13,27 +13,27 @@ class MyApp extends StatelessWidget {
       theme: new ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: new MyHomePage(title: 'Giphy Random', gifService: gifService),
+      home: new MyHomePage(title: 'Giphy Random', gifPage: GifPage()),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  final GifPage gifService;
+  final GifPage gifPage;
   final String title;
 
-  MyHomePage({Key key, this.title, this.gifService}) : super(key: key);
+  MyHomePage({Key key, this.title, this.gifPage}) : super(key: key);
 
   @override
-  _MyHomePageState createState() => new _MyHomePageState(gifService);
+  _MyHomePageState createState() => new _MyHomePageState(gifPage);
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final GifPage gifService;
+  final GifPage gifPage;
 
   String _tag = "";
 
-  _MyHomePageState(this.gifService);
+  _MyHomePageState(this.gifPage);
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: _buildCategorySearchInput(),
               ),
               FutureBuilder<Gif>(
-                  future: gifService.fetchImageUrlAsync(_tag),
+                  future: gifPage.fetchImageUrlAsync(_tag),
                   builder: _buildImage),
             ]),
           ),
